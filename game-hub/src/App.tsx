@@ -1,4 +1,5 @@
 import { Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
+import NavBar from "./mycomponents/NavBar";
 
 function App() {
   // useBreakpointValue is used to set showAside to true for lg and larger breakpoints, and false for smaller breakpoints.
@@ -19,8 +20,8 @@ function App() {
           lg: `"nav nav" "aside main"`,
         }}
       >
-        <GridItem area="nav" bg="coral">
-          Nav
+        <GridItem area="nav">
+          <NavBar></NavBar>
         </GridItem>
         {/* To make sure the aside is only rendered in large devices */}
         {/* The Aside component is conditionally rendered based on the value of showAside. */}
