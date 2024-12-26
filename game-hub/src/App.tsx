@@ -1,4 +1,5 @@
 import { Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
+import GameGrid from "./mycomponents/GameGrid";
 import NavBar from "./mycomponents/NavBar";
 
 function App() {
@@ -26,12 +27,12 @@ function App() {
         {/* To make sure the aside is only rendered in large devices */}
         {/* The Aside component is conditionally rendered based on the value of showAside. */}
         {showAside && (
-          <GridItem area="aside" bg="gold">
+          <GridItem area="aside">
             Aside
           </GridItem>
         )}
-        <GridItem area="main" bg="dodgerblue">
-          Main
+        <GridItem area="main" >
+          <GameGrid></GameGrid>
         </GridItem>
       </Grid>
     </>
