@@ -1,5 +1,5 @@
 import apiClient from "@/services/api-client";
-import { CanceledError } from "axios";
+import { AxiosRequestConfig, CanceledError } from "axios";
 import { useEffect, useState } from "react";
 
 interface FetchResponse<T> {
@@ -7,7 +7,7 @@ interface FetchResponse<T> {
   results: T[];
 }
 
-const useData = <T>(endpoint: string) => {
+const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?:any[] )=> {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
   //State to help us with tracking the loading state of the request
@@ -22,7 +22,10 @@ const useData = <T>(endpoint: string) => {
     //Setting the loading state to true
     setLoading(true);
     apiClient
-      .get<FetchResponse<T>>(endpoint, { signal: controller.signal }) // Using the instance of Abort controller to connect it to the request using the signal property
+      .get<FetchResponse<T>>(endpoint, {
+        signal: controller.signal,
+        ...requestConfig,
+      }) // Using the instance of Abort controller to connect it to the request using the signal property
       .then((response) => {
         setData(response.data.results);
         setLoading(false);
@@ -36,7 +39,7 @@ const useData = <T>(endpoint: string) => {
     return () => {
       controller.abort(); //Calling the abort method to cancel the request
     };
-  }, []); //Added empty array of dependecies to the useEffect Hook to avoid making infinite requests to the backend which is something we never want to open.
+  }, deps?[...deps]:[]); //Added empty array of dependecies to the useEffect Hook to avoid making infinite requests to the backend which is something we never want to open.
   return { data, error, isLoading };
 };
 

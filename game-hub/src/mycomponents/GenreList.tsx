@@ -1,8 +1,9 @@
-import useGenres from "@/hooks/useGenres";
+import useGenres, { Genre } from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/image-url";
 import {
   HStack,
   Image,
+  Link,
   List,
   ListItem,
   Spinner,
@@ -22,7 +23,17 @@ import {
  *
  * @returns {JSX.Element} A list of genres with images and names.
  */
-const GenreList = () => {
+
+interface Props{
+    onSelectGenre: (genre: Genre) => void;
+}
+
+
+
+
+
+
+const GenreList = ({onSelectGenre}:Props) => {
   const { data, isLoading, error } = useGenres();
 
   if (error) return null;
@@ -45,7 +56,11 @@ const GenreList = () => {
               borderRadius={8}
               src={getCroppedImageUrl(genre.image_background)}
             ></Image>
-            <Text fontSize="lg">{genre.name}</Text>
+            <Link fontSize="lg" _hover={{ textDecoration: "underline" }}
+            onClick={() => onSelectGenre(genre)}
+            >
+              {genre.name}
+            </Link>
           </HStack>
         </ListItem>
       ))}
