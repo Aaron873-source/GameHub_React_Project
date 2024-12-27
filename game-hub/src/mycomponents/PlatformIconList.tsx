@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa";
 import { IconType } from "react-icons/lib";
 import { MdPhoneIphone } from "react-icons/md";
-import { SiNintendo } from "react-icons/si";
+import { SiNintendo, SiSega } from "react-icons/si";
 interface Props {
   platforms: Platform[];
 }
@@ -28,16 +28,18 @@ const PlatformIconList = ({ platforms }: Props) => {
     android: FaAndroid,
     ios: MdPhoneIphone,
     web: BsGlobe,
-    ps5: FaPlaystation, // Placeholder icon for PS5 
-    xboxsx: FaXbox, // Placeholder icon for Xbox Series X/S 
+    ps5: FaPlaystation, // Placeholder icon for PS5
+    xboxsx: FaXbox, // Placeholder icon for Xbox Series X/S
     switch: SiNintendo,
+    sega: SiSega, // Placeholder icon for Sega
   };
 
   return (
     <HStack color={"gray.500"} marginY={1}>
       {platforms.map((platform) => (
         <span key={platform.id}>
-          {React.createElement(iconMap[platform.slug])}
+          {React.createElement(iconMap[platform.slug] || BsGlobe)}
+          {/* Using default icon BsGlobe for unknown platforms */}
         </span>
       ))}
     </HStack>

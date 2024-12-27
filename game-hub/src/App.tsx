@@ -4,6 +4,7 @@ import { Genre } from "./hooks/useGenres";
 import GameGrid from "./mycomponents/GameGrid";
 import GenreList from "./mycomponents/GenreList";
 import NavBar from "./mycomponents/NavBar";
+import PlatformSelector from "./mycomponents/PlatformSelector";
 
 function App() {
   //Making a state Hook to track the selected genre to share with the GameGrid component
@@ -42,6 +43,7 @@ function App() {
           </GridItem>
         )}
         <GridItem area="main">
+          <PlatformSelector></PlatformSelector>
           <GameGrid selectedGenre={selectedGenre}></GameGrid>
         </GridItem>
       </Grid>
