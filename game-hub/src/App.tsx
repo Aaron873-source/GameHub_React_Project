@@ -21,6 +21,7 @@ function App() {
           //Large layout, we have all three areas , wider than 1024px
           lg: `"nav nav" "aside main"`,
         }}
+        templateColumns={{ base: "1fr", lg: "200px 1fr" }}
       >
         <GridItem area="nav">
           <NavBar></NavBar>
@@ -28,7 +29,7 @@ function App() {
         {/* To make sure the aside is only rendered in large devices */}
         {/* The Aside component is conditionally rendered based on the value of showAside. */}
         {showAside && (
-          <GridItem area="aside">
+          <GridItem area="aside" padding={5}>
             <GenreList></GenreList>
           </GridItem>
         )}
