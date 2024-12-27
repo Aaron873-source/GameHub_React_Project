@@ -26,6 +26,7 @@ import {
 
 interface Props{
     onSelectGenre: (genre: Genre) => void;
+    selectedGenre: Genre | null;
 }
 
 
@@ -33,7 +34,7 @@ interface Props{
 
 
 
-const GenreList = ({onSelectGenre}:Props) => {
+const GenreList = ({selectedGenre,onSelectGenre}:Props) => {
   const { data, isLoading, error } = useGenres();
 
   if (error) return null;
@@ -56,7 +57,7 @@ const GenreList = ({onSelectGenre}:Props) => {
               borderRadius={8}
               src={getCroppedImageUrl(genre.image_background)}
             ></Image>
-            <Link fontSize="lg" _hover={{ textDecoration: "underline" }}
+            <Link fontWeight={genre.id ===selectedGenre?.id? 'bold':'normal'} _hover={{ textDecoration: "underline" }}
             onClick={() => onSelectGenre(genre)}
             >
               {genre.name}
