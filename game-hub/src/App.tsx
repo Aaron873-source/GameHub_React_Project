@@ -7,15 +7,13 @@ import GenreList from "./mycomponents/GenreList";
 import NavBar from "./mycomponents/NavBar";
 import PlatformSelector from "./mycomponents/PlatformSelector";
 
-
+export interface GameQuery {
+  genre: Genre | null;
+  platform: Platform | null;
+}
 
 function App() {
-  //Making a state Hook to track the selected genre to share with the GameGrid component
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  //Managing state for selected Platform
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
-    null
-  );
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
   // useBreakpointValue is used to set showAside to true for lg and larger breakpoints, and false for smaller breakpoints.
   const showAside = useBreakpointValue({ base: false, lg: true });
 
@@ -43,16 +41,19 @@ function App() {
         {showAside && (
           <GridItem area="aside" padding={5}>
             <GenreList
-              selectedGenre={selectedGenre}
-              onSelectGenre={(genre) => setSelectedGenre(genre)}
+              selectedGenre={gameQuery.genre}
+              onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
             ></GenreList>
           </GridItem>
         )}
         <GridItem area="main">
-          <PlatformSelector selectedPlatform={selectedPlatform}
-            onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+          <PlatformSelector
+            selectedPlatform={gameQuery.platform}
+            onSelectPlatform={(platform) =>
+              setGameQuery({ ...gameQuery, platform })
+            }
           ></PlatformSelector>
-          <GameGrid selectedPlatform={selectedPlatform} selectedGenre={selectedGenre}></GameGrid>
+          <GameGrid gameQuery={gameQuery}></GameGrid>
         </GridItem>
       </Grid>
     </>

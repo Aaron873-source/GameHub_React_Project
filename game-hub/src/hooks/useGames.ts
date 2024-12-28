@@ -1,3 +1,4 @@
+import { GameQuery } from "@/App";
 import useData from "./useData";
 import { Genre } from "./useGenres";
 
@@ -17,15 +18,15 @@ export interface Game {
 
 //Created this custom hook to fetch games from the API, HELPING IN SEPARATION OF CONCERNS
 const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null
+gameQuery:GameQuery
 ) =>
   useData<Game>(
     "/games",
     {
-      params: { genres: selectedGenre?.id, platforms: selectedPlatform?.id },
+      params: { genres: gameQuery.genre?.id, 
+        platforms: gameQuery.platform?.id },
     },
-    [selectedGenre?.id, selectedPlatform?.id]
+    [gameQuery]
   );
 
 export default useGames;
