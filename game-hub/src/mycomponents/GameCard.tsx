@@ -13,16 +13,16 @@ interface GameProps {
 const GameCard = ({ game }: GameProps) => {
   return (
     <>
-      <Card.Root >
+      <Card.Root>
         <Image src={getCroppedImageUrl(game.background_image)} />
         <Card.Body>
-          <Heading fontSize="2xl">{game.name}</Heading>
-          <HStack justifyContent="space-between">
+          <HStack justifyContent="space-between" marginBottom={3}>
             <PlatformIconList
               platforms={game.parent_platforms.map((p) => p.platform)}
             ></PlatformIconList>
             <CriticScore score={game.metacritic}></CriticScore>
           </HStack>
+          <Heading fontSize="2xl">{game.name}</Heading>
         </Card.Body>
         <Card.Footer />
       </Card.Root>

@@ -40,7 +40,7 @@ const PlatformIconList = ({ platforms }: Props) => {
   };
 
   return (
-    <HStack color={"gray.500"} marginY={1}>
+    <HStack color={"gray.300"} marginY={1}>
       {platforms.map((platform) => (
         <span key={platform.id}>
           {React.createElement(iconMap[platform.slug] || BsGlobe)}
