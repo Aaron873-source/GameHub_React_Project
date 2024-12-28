@@ -28,7 +28,6 @@ const PlatformIconList = ({ platforms }: Props) => {
     android: FaAndroid,
     ios: MdPhoneIphone,
     web: BsGlobe,
-    ps5: FaPlaystation, // Placeholder icon for PS5
     xboxsx: FaXbox, // Placeholder icon for Xbox Series X/S
     switch: SiNintendo,
     sega: SiSega, // Placeholder icon for Sega

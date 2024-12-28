@@ -1,15 +1,21 @@
 import { Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
 import { useState } from "react";
+import { Platform } from "./hooks/useGames";
 import { Genre } from "./hooks/useGenres";
 import GameGrid from "./mycomponents/GameGrid";
 import GenreList from "./mycomponents/GenreList";
 import NavBar from "./mycomponents/NavBar";
 import PlatformSelector from "./mycomponents/PlatformSelector";
 
+
+
 function App() {
   //Making a state Hook to track the selected genre to share with the GameGrid component
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-
+  //Managing state for selected Platform
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+    null
+  );
   // useBreakpointValue is used to set showAside to true for lg and larger breakpoints, and false for smaller breakpoints.
   const showAside = useBreakpointValue({ base: false, lg: true });
 
@@ -43,8 +49,10 @@ function App() {
           </GridItem>
         )}
         <GridItem area="main">
-          <PlatformSelector></PlatformSelector>
-          <GameGrid selectedGenre={selectedGenre}></GameGrid>
+          <PlatformSelector selectedPlatform={selectedPlatform}
+            onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+          ></PlatformSelector>
+          <GameGrid selectedPlatform={selectedPlatform} selectedGenre={selectedGenre}></GameGrid>
         </GridItem>
       </Grid>
     </>

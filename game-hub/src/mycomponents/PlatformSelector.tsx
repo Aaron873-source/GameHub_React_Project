@@ -5,11 +5,17 @@ import {
   MenuRoot,
   MenuTrigger,
 } from "@/components/ui/menu";
+import { Platform } from "@/hooks/useGames";
 import usePlatforms from "@/hooks/usePlatforms";
 import { HStack } from "@chakra-ui/react";
 import { FaCaretDown } from "react-icons/fa"; // Import the dropdown icon
 
-const PlatformSelector = () => {
+interface Props {
+  onSelectPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | null;
+}
+
+const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   const { data, error } = usePlatforms();
 
   if (error) return null;
@@ -19,13 +25,17 @@ const PlatformSelector = () => {
       <MenuTrigger asChild>
         <Button variant="surface" marginLeft={5}>
           <HStack>
-            Platforms <FaCaretDown />
+            {selectedPlatform?.name || "Platforms"} <FaCaretDown />
           </HStack>
         </Button>
       </MenuTrigger>
       <MenuContent>
         {data.map((platform) => (
-          <MenuItem key={platform.id} value={platform.id}>
+          <MenuItem
+            key={platform.id}
+            value={platform.name}
+            onClick={() => onSelectPlatform(platform)}
+          >
             {platform.name}
           </MenuItem>
         ))}

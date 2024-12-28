@@ -1,4 +1,4 @@
-import useGames from "@/hooks/useGames";
+import useGames, { Platform } from "@/hooks/useGames";
 import { Genre } from "@/hooks/useGenres";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import GameCard from "./GameCard";
@@ -7,13 +7,14 @@ import GameCardSkeleton from "./GameCardSkeleton";
 
 interface Props {
   selectedGenre: Genre | null;
+  selectedPlatform: Platform | null;
 }
 
-const GameGrid = ({ selectedGenre }: Props) => {
+const GameGrid = ({ selectedGenre, selectedPlatform }: Props) => {
   //Calling custom hook useGames to get games and error
-  const { data, error, isLoading } = useGames(selectedGenre);
+  const { data, error, isLoading } = useGames(selectedGenre, selectedPlatform);
   //rendering the Skeletons
-  const skeletons = [1, 2, 3, 4, 5, 6];
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   //Use of a custom Hook makes this GameGrid much cleaner and makes it primarily focused on returning some Mark-Up.
   return (
