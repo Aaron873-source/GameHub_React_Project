@@ -6,6 +6,7 @@ import GameGrid from "./mycomponents/GameGrid";
 import GenreList from "./mycomponents/GenreList";
 import NavBar from "./mycomponents/NavBar";
 import PlatformSelector from "./mycomponents/PlatformSelector";
+import SortSelector from "./mycomponents/SortSelector";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -53,6 +54,7 @@ function App() {
               setGameQuery({ ...gameQuery, platform })
             }
           ></PlatformSelector>
+          <SortSelector></SortSelector>
           <GameGrid gameQuery={gameQuery}></GameGrid>
         </GridItem>
       </Grid>
