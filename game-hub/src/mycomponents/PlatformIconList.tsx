@@ -13,6 +13,24 @@ import {
 import { IconType } from "react-icons/lib";
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo, SiSega } from "react-icons/si";
+
+/**
+ * PlatformIconList component renders a list of platform icons based on the provided platforms.
+ *
+ * @param {Object} props - The props object.
+ * @param {Platform[]} props.platforms - An array of platform objects, each containing an id and slug.
+ *
+ * @returns {JSX.Element} A horizontal stack of icons representing the platforms.
+ *
+ * The component uses a mapping of platform slugs to icon components from the `react-icons` library.
+ * If a platform slug does not have a corresponding icon in the map, a default globe icon (BsGlobe) is used.
+ *
+ * Example usage:
+ * ```tsx
+ * <PlatformIconList platforms={[{ id: 1, slug: 'pc' }, { id: 2, slug: 'playstation' }]} />
+ * ```
+ */
+
 interface Props {
   platforms: Platform[];
 }

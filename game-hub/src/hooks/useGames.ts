@@ -1,12 +1,31 @@
 import { GameQuery } from "@/App";
 import useData from "./useData";
 
+/**
+ * @file useGames.ts
+ * @description Custom hook to fetch games from the API, helping in separation of concerns.
+ */
+
+/**
+ * @interface Platform
+ * @property {string} id - The unique identifier of the platform.
+ * @property {string} name - The name of the platform.
+ * @property {string} slug - The slug of the platform.
+ */
+
 export interface Platform {
   id: string;
   name: string;
   slug: string;
 }
-
+/**
+ * @interface Game
+ * @property {number} id - The unique identifier of the game.
+ * @property {string} name - The name of the game.
+ * @property {string} background_image - The background image URL of the game.
+ * @property {{ platform: Platform }[]} parent_platforms - The platforms the game is available on.
+ * @property {number} metacritic - The Metacritic score of the game.
+ */
 export interface Game {
   id: number;
   name: string;
@@ -15,7 +34,13 @@ export interface Game {
   metacritic: number;
 }
 
-//Created this custom hook to fetch games from the API, HELPING IN SEPARATION OF CONCERNS
+/**
+ * Custom hook to fetch games from the API based on the provided game query.
+ *
+ * @function useGames
+ * @param {GameQuery} gameQuery - The query parameters for fetching games.
+ * @returns {ReturnType<typeof useData>} The data fetched from the API.
+ */
 const useGames = (gameQuery: GameQuery) =>
   useData<Game>(
     "/games",
