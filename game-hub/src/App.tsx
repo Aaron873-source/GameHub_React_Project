@@ -11,7 +11,8 @@ import SortSelector from "./mycomponents/SortSelector";
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
-  sortOrder:string;
+  sortOrder: string;
+  searchText: string;
 }
 
 function App() {
@@ -36,7 +37,11 @@ function App() {
         templateColumns={{ base: "1fr", lg: "200px 1fr" }}
       >
         <GridItem area="nav">
-          <NavBar></NavBar>
+          <NavBar
+            onSearch={(searchText) =>
+              setGameQuery({ ...gameQuery, searchText })
+            }
+          ></NavBar>
         </GridItem>
         {/* To make sure the aside is only rendered in large devices */}
         {/* The Aside component is conditionally rendered based on the value of showAside. */}
@@ -56,7 +61,12 @@ function App() {
                 setGameQuery({ ...gameQuery, platform })
               }
             ></PlatformSelector>
-            <SortSelector sortOrder={gameQuery.sortOrder} onSelectSortOrder={(sortOrder)=> setGameQuery({...gameQuery, sortOrder}) }></SortSelector>
+            <SortSelector
+              sortOrder={gameQuery.sortOrder}
+              onSelectSortOrder={(sortOrder) =>
+                setGameQuery({ ...gameQuery, sortOrder })
+              }
+            ></SortSelector>
           </HStack>
           <GameGrid gameQuery={gameQuery}></GameGrid>
         </GridItem>
