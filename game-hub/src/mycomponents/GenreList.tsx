@@ -1,6 +1,7 @@
 import useGenres, { Genre } from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/image-url";
 import {
+  Heading,
   HStack,
   Image,
   Link,
@@ -24,17 +25,12 @@ import {
  * @returns {JSX.Element} A list of genres with images and names.
  */
 
-interface Props{
-    onSelectGenre: (genre: Genre) => void;
-    selectedGenre: Genre | null;
+interface Props {
+  onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-
-
-
-
-
-const GenreList = ({selectedGenre,onSelectGenre}:Props) => {
+const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
 
   if (error) return null;
@@ -48,24 +44,32 @@ const GenreList = ({selectedGenre,onSelectGenre}:Props) => {
   }
 
   return (
-    <List.Root listStyleType={"none"}>
-      {data.map((genre) => (
-        <ListItem key={genre.id} paddingY="5px">
-          <HStack>
-            <Image
-              boxSize="32px"
-              borderRadius={8}
-              src={getCroppedImageUrl(genre.image_background)}
-            ></Image>
-            <Link fontWeight={genre.id ===selectedGenre?.id? 'bold':'normal'} _hover={{ textDecoration: "underline" }}
-            onClick={() => onSelectGenre(genre)}
-            >
-              {genre.name}
-            </Link>
-          </HStack>
-        </ListItem>
-      ))}
-    </List.Root>
+    <>
+      <Heading fontSize={"2xl"} marginBottom={3}>
+        Genres
+      </Heading>
+      <List.Root listStyleType={"none"}>
+        {data.map((genre) => (
+          <ListItem key={genre.id} paddingY="5px">
+            <HStack>
+              <Image
+                boxSize="32px"
+                borderRadius={8}
+                objectFit={"cover"}
+                src={getCroppedImageUrl(genre.image_background)}
+              ></Image>
+              <Link
+                fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+                _hover={{ textDecoration: "underline" }}
+                onClick={() => onSelectGenre(genre)}
+              >
+                {genre.name}
+              </Link>
+            </HStack>
+          </ListItem>
+        ))}
+      </List.Root>
+    </>
   );
 };
 
