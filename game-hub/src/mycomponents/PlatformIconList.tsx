@@ -31,6 +31,12 @@ const PlatformIconList = ({ platforms }: Props) => {
     xboxsx: FaXbox, // Placeholder icon for Xbox Series X/S
     switch: SiNintendo,
     sega: SiSega, // Placeholder icon for Sega
+    ps5: FaPlaystation, // Placeholder icon for PS5
+    ps4: FaPlaystation, // Placeholder icon for PS4
+    ps3: FaPlaystation, // Placeholder icon for PS3
+    ps2: FaPlaystation, // Placeholder icon for PS2
+    ps1: FaPlaystation, // Placeholder icon for PS1
+    psp: FaPlaystation, // Placeholder icon for PSP
   };
 
   return (
