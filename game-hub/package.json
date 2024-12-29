@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "postinstall": "npm install vite"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.2.3",
@@ -35,7 +34,7 @@
     "globals": "^15.14.0",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
-    "vite": "^6.0.5",
+    "vite": "^6.0.6",
     "vite-tsconfig-paths": "^5.1.4"
   }
 }
