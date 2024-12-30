@@ -37,7 +37,7 @@ const GameGrid = ({ gameQuery }: Props) => {
 
   //Use of a custom Hook makes this GameGrid much cleaner and makes it primarily focused on returning some Mark-Up.
 
-  if (error) return <Text>{error}</Text>;
+  if (error) return <Text>{error.message}</Text>;
 
   return (
     <>
@@ -53,7 +53,7 @@ const GameGrid = ({ gameQuery }: Props) => {
               <GameCardSkeleton></GameCardSkeleton>
             </GameCardContainer>
           ))}
-        {data.map((game) => (
+        {data?.results.map((game) => (
           <GameCardContainer key={game.id}>
             <GameCard game={game}></GameCard>
           </GameCardContainer>

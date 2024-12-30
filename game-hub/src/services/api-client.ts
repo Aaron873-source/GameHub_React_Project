@@ -9,3 +9,7 @@ export default axios.create({
     key: FINAL_API_KEY
   },
 });
+export interface FetchResponse<T> {
+  count: number;
+  results: T[];
+}

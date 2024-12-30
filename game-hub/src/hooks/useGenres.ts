@@ -4,7 +4,8 @@
  * @module useGenres
  */
 
-import useData from "./useData";
+import apiClient, { FetchResponse } from "@/services/api-client";
+import { useQuery } from "@tanstack/react-query";
 
 /**
  * Interface representing a Genre object.
@@ -21,11 +22,19 @@ export interface Genre {
 }
 
 /**
- * Custom hook to fetch and manage genre data.
+ * Custom hook to fetch and manage genre data using React Query.
  *
  * @function useGenres
- * @returns {ReturnType<typeof useData>} The data and state management utilities for genres.
+ * @returns {object} The data and state management utilities for genres.
  */
-const useGenres = () => useData<Genre>("/genres");
+const useGenres = () =>
+  useQuery({
+    queryKey: ["genres "],
+    queryFn: () =>
+      apiClient
+        .get<FetchResponse<Genre>>("/genres")
+        .then((response) => response.data),
+    staleTime: 1000 * 60 * 60 * 24, //24 hours
+  });
 
 export default useGenres;
