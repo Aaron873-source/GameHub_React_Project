@@ -6,6 +6,7 @@
 
 import APIClient from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";
+import ms from "ms";
 
 const apiClient = new APIClient<Genre>("/genres");
 
@@ -16,6 +17,7 @@ const apiClient = new APIClient<Genre>("/genres");
  * @property {number} id - The unique identifier for the genre.
  * @property {string} name - The name of the genre.
  * @property {string} image_background - The URL of the background image associated with the genre.
+ *
  */
 export interface Genre {
   id: number;
@@ -33,7 +35,7 @@ const useGenres = () =>
   useQuery({
     queryKey: ["genres"],
     queryFn: apiClient.getAll,
-    staleTime: 24 * 60 * 60 * 1000, //24 hours
+    staleTime: ms("24h"), //24 hours
   });
 
 export default useGenres;
