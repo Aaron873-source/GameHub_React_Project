@@ -1,7 +1,7 @@
-import { Game } from "@/hooks/useGames";
 import getCroppedImageUrl from "@/services/image-url";
 import { Card, Heading, HStack, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { Game } from "../entities/Game";
 import CriticScore from "./CriticScore";
 import PlatformIconList from "./PlatformIconList";
 
