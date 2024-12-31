@@ -1,7 +1,7 @@
 import { GameQuery } from "@/App";
-import apiClient from "@/services/api-client";
+import apiClient, { FetchResponse } from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";
-import { FetchResponse } from "@/services/api-client";
+import { Platform } from "./usePlatforms";
 
 /**
  * @file useGames.ts
@@ -15,11 +15,6 @@ import { FetchResponse } from "@/services/api-client";
  * @property {string} slug - The slug of the platform.
  */
 
-export interface Platform {
-  id: string;
-  name: string;
-  slug: string;
-}
 /**
  * @interface Game
  * @property {number} id - The unique identifier of the game.
@@ -44,7 +39,7 @@ export interface Game {
  * @returns {ReturnType<typeof useData>} The data fetched from the API.
  */
 const useGames = (gameQuery: GameQuery) =>
-  useQuery<FetchResponse<Game>,Error>({
+  useQuery<FetchResponse<Game>, Error>({
     queryKey: ["games", gameQuery],
     queryFn: () =>
       apiClient

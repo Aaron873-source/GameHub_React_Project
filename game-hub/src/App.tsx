@@ -6,7 +6,7 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Platform } from "./hooks/useGames";
+import { Platform } from "./hooks/usePlatforms";
 import { Genre } from "./hooks/useGenres";
 import GameGrid from "./mycomponents/GameGrid";
 import GameHeading from "./mycomponents/GameHeading";

@@ -1,7 +1,6 @@
-import apiClient from "@/services/api-client";
+import apiClient, { FetchResponse } from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";
-import { FetchResponse } from "@/services/api-client";
-import { Platform } from "./useGames";
+
 /**
  * Custom hook to fetch platform data.
  *
@@ -10,6 +9,11 @@ import { Platform } from "./useGames";
  *
  * @returns {ReturnType<typeof useQuery>} The platform data fetched from the API.
  */
+export interface Platform {
+  id: string;
+  name: string;
+  slug: string;
+}
 
 const usePlatforms = () =>
   useQuery({
