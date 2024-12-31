@@ -1,5 +1,6 @@
-import useGenres, { Genre } from "@/hooks/useGenres";
+import useGenres from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/image-url";
+import useGameQueryStore from "@/store";
 import {
   Heading,
   HStack,
@@ -25,13 +26,11 @@ import {
  * @returns {JSX.Element} A list of genres with images and names.
  */
 
-interface Props {
-  onSelectGenre: (genre: Genre) => void;
-  selectedGenreId?: number;
-}
-
-const GenreList = ({ selectedGenreId, onSelectGenre }: Props) => {
+const GenreList = () => {
   const { data, isLoading, error } = useGenres();
+  const selectedGenreId = useGameQueryStore((S) => S.gameQuery.genreId);
+
+  const setSelectedGenreId = useGameQueryStore((S) => S.setGenreId);
 
   if (error) return null;
   if (isLoading) {
@@ -61,7 +60,7 @@ const GenreList = ({ selectedGenreId, onSelectGenre }: Props) => {
               <Link
                 fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
                 _hover={{ textDecoration: "underline" }}
-                onClick={() => onSelectGenre(genre)}
+                onClick={() => setSelectedGenreId(genre.id)}
               >
                 {genre.name}
               </Link>

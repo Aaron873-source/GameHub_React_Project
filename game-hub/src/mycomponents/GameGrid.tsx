@@ -1,4 +1,3 @@
-import { GameQuery } from "@/App";
 import useGames from "@/hooks/useGames";
 import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import React from "react";
@@ -27,20 +26,9 @@ import GameCardSkeleton from "./GameCardSkeleton";
  * - If there is an error, it displays the error message.
  */
 
-interface Props {
-  gameQuery: GameQuery;
-}
-
-const GameGrid = ({ gameQuery }: Props) => {
+const GameGrid = () => {
   //Calling custom hook useGames to get games and error
-  const {
-    data,
-    error,
-    isLoading,
-    isFetchingNextPage,
-    fetchNextPage,
-    hasNextPage,
-  } = useGames(gameQuery);
+  const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames();
   //rendering the Skeletons
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 

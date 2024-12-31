@@ -16,15 +16,13 @@ import SearchInput from "./SearchInput";
  * <NavBar onSearch={(searchText) => console.log(searchText)} />
  */
 
-interface Props {
-  onSearch: (searchText: string) => void;
-}
 
-const NavBar = ({ onSearch }: Props) => {
+
+const NavBar = () => {
   return (
     <HStack padding="10px">
       <Image src={logo} alt="logo" boxSize="81px" />
-      <SearchInput onSearch={onSearch}></SearchInput>
+      <SearchInput></SearchInput>
       <ColorModeSwitch></ColorModeSwitch>
     </HStack>
   );
