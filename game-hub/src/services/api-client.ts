@@ -4,6 +4,7 @@ const FINAL_API_KEY = process.env.VITE_APP_RAWG_API_KEY;
 
 export interface FetchResponse<T> {
   count: number;
+  next: string | null;
   results: T[];
 }
 
@@ -24,10 +25,8 @@ class APIClient<T> {
   getAll = (config: AxiosRequestConfig) => {
     return axiosInstance
       .get<FetchResponse<T>>(this.endpoint, config)
-      .then(res => res.data);
+      .then((res) => res.data);
   };
 }
-
-
 
 export default APIClient;

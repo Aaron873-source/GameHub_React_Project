@@ -1,6 +1,8 @@
 import { GameQuery } from "@/App";
+import { Button } from "@/components/ui/button";
 import useGames from "@/hooks/useGames";
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, SimpleGrid, Text } from "@chakra-ui/react";
+import React from "react";
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
@@ -31,7 +33,14 @@ interface Props {
 
 const GameGrid = ({ gameQuery }: Props) => {
   //Calling custom hook useGames to get games and error
-  const { data, error, isLoading } = useGames(gameQuery);
+  const {
+    data,
+    error,
+    isLoading,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+  } = useGames(gameQuery);
   //rendering the Skeletons
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
@@ -40,12 +49,11 @@ const GameGrid = ({ gameQuery }: Props) => {
   if (error) return <Text>{error.message}</Text>;
 
   return (
-    <>
+    <Box padding={5}>
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
         columnGap={6}
         rowGap={10}
-        padding={5}
       >
         {isLoading &&
           skeletons.map((skeleton) => (
@@ -53,13 +61,24 @@ const GameGrid = ({ gameQuery }: Props) => {
               <GameCardSkeleton></GameCardSkeleton>
             </GameCardContainer>
           ))}
-        {data?.results.map((game) => (
-          <GameCardContainer key={game.id}>
-            <GameCard game={game}></GameCard>
-          </GameCardContainer>
+
+        {data?.pages.map((page, index) => (
+          <React.Fragment key={index}>
+            {page.results.map((game) => (
+              <GameCardContainer key={game.id}>
+                <GameCard game={game}></GameCard>
+              </GameCardContainer>
+            ))}
+          </React.Fragment>
         ))}
       </SimpleGrid>
-    </>
+      {/* ONLY WANT TO RENDER THE BUTTON ONLY IF THERE IS A NEXT PAGE */}
+      {hasNextPage && (
+        <Button onClick={() => fetchNextPage()} marginY={6}>
+          {isFetchingNextPage ? "Loading..." : "Load More Games"}
+        </Button>
+      )}
+    </Box>
   );
 };
 
