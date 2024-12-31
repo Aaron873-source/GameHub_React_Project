@@ -1,8 +1,8 @@
 import { GameQuery } from "@/App";
-import { Button } from "@/components/ui/button";
 import useGames from "@/hooks/useGames";
-import { Box, SimpleGrid, Text } from "@chakra-ui/react";
+import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
@@ -48,12 +48,22 @@ const GameGrid = ({ gameQuery }: Props) => {
 
   if (error) return <Text>{error.message}</Text>;
 
+  //Below we have to count the number of games on each page and return it to the total
+  const fetchedGamesCount =
+    data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
+
   return (
-    <Box padding={5}>
+    <InfiniteScroll
+      dataLength={fetchedGamesCount}
+      hasMore={!!hasNextPage}
+      next={() => fetchNextPage()}
+      loader={<Spinner />}
+    >
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
         columnGap={6}
         rowGap={10}
+        padding={5}
       >
         {isLoading &&
           skeletons.map((skeleton) => (
@@ -61,7 +71,6 @@ const GameGrid = ({ gameQuery }: Props) => {
               <GameCardSkeleton></GameCardSkeleton>
             </GameCardContainer>
           ))}
-
         {data?.pages.map((page, index) => (
           <React.Fragment key={index}>
             {page.results.map((game) => (
@@ -72,13 +81,7 @@ const GameGrid = ({ gameQuery }: Props) => {
           </React.Fragment>
         ))}
       </SimpleGrid>
-      {/* ONLY WANT TO RENDER THE BUTTON ONLY IF THERE IS A NEXT PAGE */}
-      {hasNextPage && (
-        <Button onClick={() => fetchNextPage()} marginY={6}>
-          {isFetchingNextPage ? "Loading..." : "Load More Games"}
-        </Button>
-      )}
-    </Box>
+    </InfiniteScroll>
   );
 };
 
