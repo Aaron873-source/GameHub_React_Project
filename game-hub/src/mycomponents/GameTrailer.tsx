@@ -15,7 +15,11 @@ const GameTrailer = ({ gameId }: Props) => {
 
   //   Below if if there is a trailer for the game, it will be displayed but if not then return null
   return first ? (
-    <video src={first.data[480]} poster={first.preview} controls></video>
+    <video
+      src={first.data[480]}
+      poster={first.preview}
+      controls
+    ></video>
   ) : null;
 };
 
