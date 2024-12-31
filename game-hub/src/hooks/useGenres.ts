@@ -4,8 +4,10 @@
  * @module useGenres
  */
 
-import apiClient, { FetchResponse } from "@/services/api-client";
+import APIClient from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";
+
+const apiClient = new APIClient<Genre>("/genres");
 
 /**
  * Interface representing a Genre object.
@@ -29,11 +31,8 @@ export interface Genre {
  */
 const useGenres = () =>
   useQuery({
-    queryKey: ["genres "],
-    queryFn: () =>
-      apiClient
-        .get<FetchResponse<Genre>>("/genres")
-        .then((response) => response.data),
+    queryKey: ["genres"],
+    queryFn: apiClient.getAll,
     staleTime: 1000 * 60 * 60 * 24, //24 hours
   });
 
