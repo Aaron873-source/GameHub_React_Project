@@ -52,7 +52,6 @@ const GameGrid = () => {
         columnGap={6}
         rowGap={10}
         padding={5}
-        // minChildWidth={"350px"}
       >
         {isLoading &&
           skeletons.map((skeleton) => (
