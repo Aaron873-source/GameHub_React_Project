@@ -1,4 +1,4 @@
-import useScreenShots from "@/hooks/useScreenShots";
+import useScreenShots from "@/hooks/useScreenshots";
 import { Image, SimpleGrid } from "@chakra-ui/react";
 
 interface Props {
