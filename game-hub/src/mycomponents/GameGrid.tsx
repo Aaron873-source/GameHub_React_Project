@@ -48,10 +48,11 @@ const GameGrid = () => {
       loader={<Spinner />}
     >
       <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+        columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4 }}
         columnGap={6}
         rowGap={10}
         padding={5}
+        // minChildWidth={"350px"}
       >
         {isLoading &&
           skeletons.map((skeleton) => (

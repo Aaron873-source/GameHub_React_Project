@@ -22,13 +22,12 @@ const HomePage = () => {
           //Defining two different layouts for different screen sizes
           //One for mobile devices and for large devices with screens wider than 1024px
           //Mobile layout, we only have nav and main areas we do not have aside
-          base: `
-      "main"
+          base: `"main"
     `,
           //Large layout, we have all three areas , wider than 1024px
-          lg: ` "aside main"`,
+          lg: `"aside main"`,
         }}
-        templateColumns={{ base: "1fr", lg: "200px 1fr" }}
+        templateColumns={{ base: "1fr", lg: "250px 1fr" }}
       >
         {/* To make sure the aside is only rendered in large devices */}
         {/* The Aside component is conditionally rendered based on the value of showAside. */}

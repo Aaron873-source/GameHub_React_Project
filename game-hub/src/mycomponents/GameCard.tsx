@@ -26,7 +26,7 @@ interface GameProps {
 const GameCard = ({ game }: GameProps) => {
   return (
     <>
-      <Card.Root>
+      <Card.Root width="100%" >
         <Image src={getCroppedImageUrl(game.background_image)} />
         <Card.Body>
           <HStack justifyContent="space-between" marginBottom={3}>
