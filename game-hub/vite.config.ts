@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => {
       'process.env': env,
     },
     plugins: [react(), tsconfigPaths()],
+    base: "/GameHub_React_Project/",
   };
 
 

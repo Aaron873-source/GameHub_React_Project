@@ -15,7 +15,7 @@ createRoot(document.getElementById("root")!).render(
       {/* Below we are installing React Query into the root of our application */}
       <QueryClientProvider client={queryClient}>
         {/* Implementing routing below we replace the App.tsx with this to "RouterProvider" to let React decide what page to show depending on what path is selected */}
-        <RouterProvider router={router} />
+        <RouterProvider router={router}/>
       </QueryClientProvider>
     </Provider>
   </StrictMode>

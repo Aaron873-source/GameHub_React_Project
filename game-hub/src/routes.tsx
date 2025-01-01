@@ -4,16 +4,21 @@ import GameDetailPage from "./pages/GameDetailPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Layout></Layout>,
+      errorElement: <ErrorPage></ErrorPage>,
+      children: [
+        { index: true, element: <HomePage></HomePage> },
+        { path: "games/:slug", element: <GameDetailPage></GameDetailPage> },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <Layout></Layout>,
-    errorElement: <ErrorPage></ErrorPage>,
-    children: [
-      { index: true, element: <HomePage></HomePage> },
-      { path: "games/:slug", element: <GameDetailPage></GameDetailPage> },
-    ],
-  },
-]);
+    basename: "/GameHub_React_Project/", // Set the base URL to the name of your repository
+  }
+);
 
 export default router;
