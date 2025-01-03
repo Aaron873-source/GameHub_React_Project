@@ -1,31 +1,40 @@
-import { HStack, Image } from "@chakra-ui/react";
+import { Box, HStack, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import logo from "../assets/idea_logo2.jpeg";
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchInput from "./SearchInput";
-
 /**
- * NavBar component that renders a navigation bar with a logo, search input, and color mode switch.
+ * NavBar component that renders a navigation bar with a logo, title, search input, and color mode switch.
  *
  * @component
- * @param {Object} props - The props object.
- * @param {function} props.onSearch - Callback function to handle search input.
  *
  * @returns {JSX.Element} The rendered NavBar component.
  *
  * @example
- * <NavBar onSearch={(searchText) => console.log(searchText)} />
+ * <NavBar />
  */
 
 const NavBar = () => {
   return (
-    <HStack padding="10px">
-      <Link to="/">
-        <Image src={logo} alt="logo" boxSize="81px" fit="contain" />
-      </Link>
-      <SearchInput></SearchInput>
-      <ColorModeSwitch></ColorModeSwitch>
-    </HStack>
+    <>
+      <Box textAlign="center" paddingTop={2}>
+        <Link to="/">
+          <Text
+            fontFamily="'Press Start 2P', cursive"
+            fontSize={{ base: "1xl", sm: "1xl", md: "2xl" }}
+          >
+            Aaron's Game-Hub
+          </Text>
+        </Link>
+      </Box>
+      <HStack padding="10px">
+        <Link to="/">
+          <Image src={logo} alt="logo" boxSize="81px" fit="contain" />
+        </Link>
+        <SearchInput></SearchInput>
+        <ColorModeSwitch></ColorModeSwitch>
+      </HStack>
+    </>
   );
 };
 

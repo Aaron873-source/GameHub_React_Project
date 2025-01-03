@@ -6,7 +6,7 @@ import { Game } from "../entities/Game";
 
 /**
  * @file useGames.ts
- * @description Custom hook to fetch games from the API, helping in separation of concerns.
+ * @description Custom hook to fetch games from the API using infinite scrolling.
  */
 
 const apiClient = new APIClient<Game>("/games");
@@ -15,8 +15,7 @@ const apiClient = new APIClient<Game>("/games");
  * Custom hook to fetch games from the API based on the provided game query.
  *
  * @function useGames
- * @param {GameQuery} gameQuery - The query parameters for fetching games.
- * @returns {ReturnType<typeof useData>} The data fetched from the API.
+ * @returns {ReturnType<typeof useInfiniteQuery>} The data fetched from the API using infinite scrolling.
  */
 const useGames = () => {
   const gameQuery = useGameQueryStore((s) => s.gameQuery);

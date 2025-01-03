@@ -8,22 +8,21 @@ import GameCardSkeleton from "./GameCardSkeleton";
 
 /**
  * GameGrid component is responsible for displaying a grid of game cards.
- * It uses a custom hook `useGames` to fetch the games based on the provided query.
+ * It uses a custom hook `useGames` to fetch the games.
  * It also handles loading and error states.
  *
  * @component
- * @param {Props} props - The props for the GameGrid component.
- * @param {GameQuery} props.gameQuery - The query object to fetch games.
  *
  * @returns {JSX.Element} The rendered GameGrid component.
  *
  * @example
- * <GameGrid gameQuery={gameQuery} />
+ * <GameGrid />
  *
  * @remarks
  * - This component uses Chakra UI's `SimpleGrid` for layout.
  * - It displays skeletons while the games are loading.
  * - If there is an error, it displays the error message.
+ * - It uses `react-infinite-scroll-component` for infinite scrolling.
  */
 
 const GameGrid = () => {

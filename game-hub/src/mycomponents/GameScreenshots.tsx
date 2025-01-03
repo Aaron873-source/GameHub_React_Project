@@ -1,6 +1,20 @@
 import useScreenShots from "@/hooks/useScreenshots";
 import { Image, SimpleGrid } from "@chakra-ui/react";
 
+/**
+ * This component fetches and displays screenshots for a specific game.
+ *
+ * @component
+ * @param {number} gameId - The ID of the game for which screenshots are to be fetched.
+ *
+ * @returns {JSX.Element | null} A grid of images displaying the screenshots of the game, or null if the data is still loading.
+ *
+ * @throws Will throw an error if there is an issue fetching the screenshots.
+ *
+ * @example
+ * <GameScreenshots gameId={12345} />
+ */
+
 interface Props {
   gameId: number;
 }

@@ -1,10 +1,7 @@
 /**
- * Custom hook to fetch platform data.
+ * Interface representing a Platform.
  *
- * This hook uses the `useQuery` hook from `@tanstack/react-query` to fetch a list of platform data from the specified endpoint.
- * The data fetched is of type `Platform`.
- *
- * @returns {ReturnType<typeof useQuery>} The platform data fetched from the API.
+ * This interface defines the structure of a platform object, including its id, name, and slug.
  */
 
 export interface Platform {

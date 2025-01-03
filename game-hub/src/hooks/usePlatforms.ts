@@ -1,3 +1,13 @@
+/**
+ * Custom hook to fetch and cache platform data using React Query.
+ *
+ * This hook utilizes the `useQuery` hook from `@tanstack/react-query` to fetch
+ * platform data from the API endpoint `/platforms/lists/parents`. The data is
+ * cached for 24 hours to minimize unnecessary network requests.
+ *
+ * @module usePlatforms
+ */
+
 import APIClient from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";
 import ms from "ms";

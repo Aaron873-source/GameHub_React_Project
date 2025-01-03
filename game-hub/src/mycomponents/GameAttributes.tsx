@@ -3,6 +3,17 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import CriticScore from "./CriticScore";
 import DefinitionItem from "./DefinitionItem";
 
+/**
+ * This component displays various attributes of a game in a grid layout.
+ *
+ * @component
+ * @param {Props} props - The properties object.
+ * @param {Game} props.game - The game object containing various attributes to display.
+ *
+ * @returns {JSX.Element} The rendered component displaying game attributes.
+ *
+ */
+
 interface Props {
   game: Game;
 }

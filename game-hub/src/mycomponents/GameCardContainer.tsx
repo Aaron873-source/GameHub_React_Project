@@ -4,7 +4,8 @@ import { ReactNode } from "react";
  * A container component for game cards.
  *
  * This component wraps its children with a `Box` component from Chakra UI,
- * applying a border radius and hiding any overflow content.
+ * applying a border radius, hiding any overflow content, and adding a hover effect
+ * that scales the container slightly.
  *
  * @param {Props} props - The props for the component.
  * @param {ReactNode} props.children - The child elements to be rendered inside the container.

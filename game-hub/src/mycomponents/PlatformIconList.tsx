@@ -25,10 +25,6 @@ import { SiNintendo, SiSega } from "react-icons/si";
  * The component uses a mapping of platform slugs to icon components from the `react-icons` library.
  * If a platform slug does not have a corresponding icon in the map, a default globe icon (BsGlobe) is used.
  *
- * Example usage:
- * ```tsx
- * <PlatformIconList platforms={[{ id: 1, slug: 'pc' }, { id: 2, slug: 'playstation' }]} />
- * ```
  */
 
 interface Props {

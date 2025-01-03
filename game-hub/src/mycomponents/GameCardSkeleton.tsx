@@ -6,9 +6,8 @@ import { Card } from "@chakra-ui/react";
  * for a game card. This is typically used to indicate loading content while the actual
  * game card data is being fetched.
  *
- * The component utilizes the `Skeleton` and `SkeletonText` components from the UI library
- * to create a visual representation of the loading state.
- *
+ * The component utilizes the `Skeleton` and `SkeletonText` components from the UI library,
+ * and the `Card` component from Chakra UI to create a visual representation of the loading state.
  *
  * @returns {JSX.Element} A skeleton placeholder for a game card.
  */

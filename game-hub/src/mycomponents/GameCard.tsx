@@ -1,3 +1,4 @@
+import { Tooltip } from "@/components/ui/tooltip";
 import getCroppedImageUrl from "@/services/image-url";
 import { Card, Heading, HStack, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
@@ -13,8 +14,6 @@ import PlatformIconList from "./PlatformIconList";
  * @param {Game} props.game - The game object containing details to be displayed.
  *
  * @returns {JSX.Element} A card component displaying the game's image, platform icons, critic score, and name.
- *
- *
  */
 
 //Need to first pass a game object as a prop to GameCard component
@@ -26,8 +25,15 @@ interface GameProps {
 const GameCard = ({ game }: GameProps) => {
   return (
     <>
-      <Card.Root width="100%" >
-        <Image src={getCroppedImageUrl(game.background_image)} alt ="background_image"/>
+      <Card.Root width="100%">
+        <Tooltip showArrow content="Click to view game details">
+          <Link to={"games/" + game.slug}>
+            <Image
+              src={getCroppedImageUrl(game.background_image)}
+              alt="background_image"
+            />
+          </Link>
+        </Tooltip>
         <Card.Body>
           <HStack justifyContent="space-between" marginBottom={3}>
             <PlatformIconList
@@ -36,7 +42,9 @@ const GameCard = ({ game }: GameProps) => {
             <CriticScore score={game.metacritic}></CriticScore>
           </HStack>
           <Heading fontSize="2xl">
-            <Link to={"games/" + game.slug}>{game.name}</Link>
+            <Tooltip showArrow content="Click to view game details">
+              <Link to={"games/" + game.slug}>{game.name}</Link>
+            </Tooltip>
           </Heading>
         </Card.Body>
         <Card.Footer />

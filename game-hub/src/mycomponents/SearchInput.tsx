@@ -7,13 +7,12 @@ import { useNavigate } from "react-router-dom";
 
 /**
  * SearchInput component allows users to input search text and triggers a search action upon form submission.
+ * It uses a store to set the search text and navigates to the home page upon search.
  *
  * @component
- * @param {Object} props - Component props.
- * @param {function} props.onSearch - Callback function to handle the search action. It receives the search text as an argument.
  *
  * @example
- * <SearchInput onSearch={(searchText) => console.log(searchText)} />
+ * <SearchInput />
  *
  * @returns {JSX.Element} The rendered SearchInput component.
  */

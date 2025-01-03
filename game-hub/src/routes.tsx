@@ -17,7 +17,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: "/GameHub_React_Project/", // Set the base URL to the name of your repository
+    basename: import.meta.env.BASE_URL, // Set the base URL to the name of your repository
   }
 );
 
