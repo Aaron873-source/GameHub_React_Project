@@ -33,11 +33,37 @@ const GameGrid = () => {
 
   //Use of a custom Hook makes this GameGrid much cleaner and makes it primarily focused on returning some Mark-Up.
 
-  if (error) return <Text>{error.message}</Text>;
-
   //Below we have to count the number of games on each page and return it to the total
   const fetchedGamesCount =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
+
+  // Handleloading state
+  if (isLoading) {
+    return (
+      <SimpleGrid
+        columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4 }}
+        columnGap={6}
+        rowGap={10}
+        padding={5}
+      >
+        {skeletons.map((skeleton) => (
+          <GameCardContainer key={skeleton}>
+            <GameCardSkeleton />
+          </GameCardContainer>
+        ))}
+      </SimpleGrid>
+    );
+  }
+
+  // Handle error state
+  if (error) return <Text>{error.message}</Text>;
+
+  // Handle no results
+  if (!isLoading && fetchedGamesCount === 0) {
+    return (
+      <Text padding={5}>No games found matching your search criteria.</Text>
+    );
+  }
 
   return (
     <InfiniteScroll
@@ -52,17 +78,11 @@ const GameGrid = () => {
         rowGap={10}
         padding={5}
       >
-        {isLoading &&
-          skeletons.map((skeleton) => (
-            <GameCardContainer key={skeleton}>
-              <GameCardSkeleton></GameCardSkeleton>
-            </GameCardContainer>
-          ))}
         {data?.pages.map((page, index) => (
           <React.Fragment key={index}>
             {page.results.map((game) => (
               <GameCardContainer key={game.id}>
-                <GameCard game={game}></GameCard>
+                <GameCard game={game} />
               </GameCardContainer>
             ))}
           </React.Fragment>
